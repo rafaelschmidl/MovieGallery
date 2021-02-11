@@ -1,0 +1,42 @@
+﻿@page
+@model MovieGallery.Pages.IndexModel
+@{
+    ViewData["Title"] = "Home page";
+}
+
+<div class="container">
+
+    <div class="row">
+        <form>
+            <select asp-for="MovieGenre" asp-items="Model.Genres">
+                <option value="">All</option>
+            </select>
+            <input type="text" asp-for="SearchString" placeholder="Search here.."/>
+            <input type="submit" value="Search" />
+        </form>
+
+    </div>
+
+    <br />
+
+    <div class="row h-25">
+        @foreach (var item in Model.Movie)
+        {
+            <div class="card m-4 w-25">
+                <img class="card-img-top" src="~/img/@item.ImageName" alt="Card image cap">
+                <div class="card-body">
+                    <h5 class="card-title">@Html.DisplayFor(modelItem => item.Title)</h5>
+                    <p class="card-text">@Html.DisplayFor(modelItem => item.Description)</p>
+                    <p>Release Date: @Html.DisplayFor(modelItem => item.ReleaseDate)</p>
+                    <a href="@item.IMDBLinkUrl" class="btn btn-primary">Link to IMDB</a>
+                </div>
+            </div>
+        }
+    </div>
+
+
+    @*@Html.DisplayFor(modelItem => item.Title)*@
+
+
+
+</div>
